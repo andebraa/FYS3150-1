@@ -21,13 +21,14 @@ int main(int argc, char* argv[]){
   int n = atoi(argv[1]);  //convert string to integer
   char* outfilename;
   outfilename = argv[2];
-  double h;
 
-  double* a = new double[n];
-  double* b = new double[n];
-  double* c = new double[n];
-  double* x = new double[n];
-  double* q = new double[n];
+  double *a, *b, *c, *x, *q, h;
+
+  a = new double[n];
+  b = new double[n];
+  c = new double[n];
+  x = new double[n];
+  q = new double[n];
 
 
   for (int i = 0; i<n; i++){
@@ -45,6 +46,7 @@ int main(int argc, char* argv[]){
   //Nå er x laget - likningen er løst!
 
   //Skrive til fil for å plotte
+
     ofstream myfile;
     myfile.open(outfilename);
     for (int i = 0; i<n; i++){
@@ -56,6 +58,7 @@ int main(int argc, char* argv[]){
 
 //Function specification
 void Algorithm(double* a, double* b, double* c, double *x, double *q, int N){
+
   double *l, *d, *u, *y;
 
   // LU comp.
@@ -89,7 +92,6 @@ void Algorithm(double* a, double* b, double* c, double *x, double *q, int N){
     x[i] = (y[i]-u[i]*x[i+1])/d[i];
   }
 
-
   delete[] l;
   delete[] d;
   delete[] u;
@@ -99,9 +101,10 @@ void Algorithm(double* a, double* b, double* c, double *x, double *q, int N){
 
 
 void Fill_q(double*q, int N, double h){
-  double hh = h*h;
+  double hh, x;
+  hh = h*h;
   for (int i=0; i<N; i++){
-    double x = (double) (i+1)*h;
+    x = (double) (i+1)*h;
     q[i] = f(x)*hh;
   }
 }
