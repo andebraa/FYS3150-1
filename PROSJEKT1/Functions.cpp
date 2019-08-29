@@ -77,6 +77,32 @@ void Thomas(double* d, double* l, double* g, double* u, int N){
 }
 
 
+void SpecialThomas(double* g, double* u, int N){
+
+    double *G;
+
+    G = new double[N];
+
+
+    // Forward substitution
+
+    for (int i = 1; i<N; i++){
+      G[i] = g[i] + (G[i-1]*(i-1))/i;
+    }
+
+    // Backward sub.
+
+    u[N-1] = ((N-1)*g[N-1])/N;
+
+    for (int i=N-2; i>0; i--){
+      u[i] = (i*(G[i]+u[i+1]))/(i+1);
+    }
+
+    delete[] G;
+
+}
+
+
 void Fill_q(double*q, int N, double h){
   double hh, x;
   hh = h*h;
