@@ -28,6 +28,7 @@ int main(int argc, char* argv[]){
     b[i] = -1;
     c[i] = -1;
   }
+  /* Kan fylle disse enklere ved armadillo - trenger terminalkommando-hjelp! */
 
   h = 1/((double) n + 1.0);
 
