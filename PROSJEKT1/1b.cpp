@@ -18,22 +18,21 @@ int main(int argc, char* argv[]){
 
 
 
-  double *a, *b, *c, *x, *q, h;
+  double *d, *a, *b, *x, *q, h;
   time_t start, finish;
 
+  d = new double[n];
   a = new double[n];
   b = new double[n];
-  c = new double[n];
   x = new double[n];
   q = new double[n];
 
 
   for (int i = 0; i<n; i++){
-    a[i] = 2;
+    d[i] = 2;
+    a[i] = -1;
     b[i] = -1;
-    c[i] = -1;
   }
-  /* Kan fylle disse enklere ved armadillo - trenger terminalkommando-hjelp! */
 
   h = 1/((double) n + 1.0);
 
@@ -42,9 +41,8 @@ int main(int argc, char* argv[]){
 
   start = clock();
 
-  Thomas(a, b, q, x, n);
+  Thomas(d, a, b, q, x, n);
 
-  //ThomasLU(a, b, c, x, q, n);
 
   finish = clock();
 
