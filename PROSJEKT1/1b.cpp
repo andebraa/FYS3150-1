@@ -17,7 +17,6 @@ int main(int argc, char* argv[]){
   outfilename2 = argv[3];
 
 
-
   double *d, *a, *b, *x, *q, h;
   time_t start, finish;
 

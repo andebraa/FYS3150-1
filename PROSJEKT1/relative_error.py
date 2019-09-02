@@ -18,4 +18,6 @@ for i in range(M):
 
 
 plt.plot(np.log10(h),rel_e)
+plt.xlabel("log(h)")
+plt.ylabel("$\epsilon_r$")
 plt.show()

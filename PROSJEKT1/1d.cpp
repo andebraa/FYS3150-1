@@ -16,7 +16,7 @@ int main(int argc, char* argv[]){
   outfilename = argv[2];
   outfilename2 = argv[3];
 
-  double *u, *q, *H, *rel_e, h, small_h, *a, *b, *d;
+  double *u, *q, *H, *rel_e, h, small_h, *a, *b, *d, *x;
 
 
   u = new double[n];
@@ -28,6 +28,7 @@ int main(int argc, char* argv[]){
   b = new double[n];
   d = new double[n];
 
+  x = new double[n];
 
   for (int i = 0; i<n; i++){
     d[i] = 2;
@@ -41,11 +42,16 @@ int main(int argc, char* argv[]){
 
   Thomas(d, a, b, q, u, n);
 
-  double x;
+  SpecialThomas(q, x, n);
+
+
+
+  double y;
   for (int i = 0; i < n; i++){
     H[i] = h_least(u[i]);
-    x = (double) (i+1)*h;
-    rel_e[i] = log10(abs((u[i] - exact(x))/exact(x)));
+    y = (double) (i+1)*h;
+    rel_e[i] = log10(abs((u[i] - exact(y))/exact(y)));
+    //cout<<u[i]<< "    " << x[i]<<endl;
     }
 
 
@@ -62,5 +68,7 @@ int main(int argc, char* argv[]){
   delete[] H;
   delete[] q;
   delete[] rel_e;
+  delete[] x;
+  delete[] u;
 
 }

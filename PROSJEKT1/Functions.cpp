@@ -71,6 +71,8 @@ void Thomas(double* d, double* a, double* b, double* g, double* u, int N){
       u[i] = (G[i]-a[i]*u[i+1])/D[i];
     }
 
+    //SPØR OM HJELP MED INDEKSERING!!!!
+
     delete[] D;
     delete[] G;
 
@@ -88,7 +90,7 @@ void SpecialThomas(double* g, double* u, int N){
     // Forward substitution
 
     for (int i = 1; i<N; i++){
-      G[i] = g[i] + (G[i-1]*(i-1))/i;
+      G[i] = g[i] + (G[i-1]*(i-1))/((double)i);
     }
 
     // Backward sub.
@@ -96,7 +98,7 @@ void SpecialThomas(double* g, double* u, int N){
     u[N-1] = ((N-1)*g[N-1])/N;
 
     for (int i=N-2; i>=0; i--){
-      u[i] = (i*(G[i]+u[i+1]))/(i+1);
+      u[i] = ((double)(i+1)*(G[i]+u[i+1]))/((double)(i+2));
     }
 
     delete[] G;
