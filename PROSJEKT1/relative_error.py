@@ -4,7 +4,7 @@ import sys
 
 
 M = int(sys.argv[1])
-N = [int(10**i) for i in range(1,M+1)]
+N = [int(10**i) for i in range(1,M+1s)]
 
 rel_e = np.zeros(M)
 h = np.zeros(M)
@@ -15,7 +15,7 @@ for i in range(M):
     rel_e[i] = max(load)
     h[i] = 1/(N[i]+1.0)
 
-print(rel_e)
+print(rel_es)
 
 plt.plot(np.log10(h),rel_e)
 plt.xlabel("log(h)")
