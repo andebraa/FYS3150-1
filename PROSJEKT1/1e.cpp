@@ -26,16 +26,22 @@ int main(int argc, char* argv[]){
   }
   A(n-1,n-1) = 2;
 
-  mat L, U;
 
-  double h, *q, *y, *x;
-  q = new double[n];
-  y = new double[n];
-  x = new double[n];
+  mat L, U;
+  double h, hh, a;
+  vec q, x, y;
+
+  q = vec(n);
+  x = vec(n);
+  y = vec(n);
 
   h = 1/((double) n + 1.0);
 
-  Fill_q(q, n, h);
+  hh = h*h;
+  for (int i=0; i<n; i++){
+    a = (double) (i+1)*h;
+    q(i) = f(a)*hh;
+  }
 
   start = clock();
 
@@ -44,8 +50,8 @@ int main(int argc, char* argv[]){
 
   //Forward sub.
 
-  y = solve(L,q);
-  x = solve(U, y);
+  solve(y,L,q);
+  solve(x,U, y);
 
   finish = clock();
 

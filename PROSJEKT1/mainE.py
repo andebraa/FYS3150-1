@@ -12,7 +12,7 @@ N = [int(10**i) for i in range(1,M+1)]
 
 for n in N:
     filename = "LUtime-" + str(n) + ".txt"
-    system("./1d.exe" + " " + str(n) + " " + filename)
+    system("./1e.exe" + " " + str(n) + " " + filename)
     print("Finished with n = " + str(n) )
 
 
