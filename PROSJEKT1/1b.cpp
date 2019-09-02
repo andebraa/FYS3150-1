@@ -35,6 +35,7 @@ int main(int argc, char* argv[]){
 
   h = 1/((double) n + 1.0);
 
+
   Fill_q(q, n, h);
 
 
