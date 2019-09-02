@@ -15,9 +15,10 @@ for i in range(M):
     rel_e[i] = max(load)
     h[i] = 1/(N[i]+1.0)
 
-
+print(rel_e)
 
 plt.plot(np.log10(h),rel_e)
 plt.xlabel("log(h)")
 plt.ylabel("$\epsilon_r$")
+plt.title("Relative error")
 plt.show()
