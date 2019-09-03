@@ -7,7 +7,7 @@
 
 using namespace std;
 
-ofstream myfile, myfile2;
+ofstream myfile2;
 
 int main(int argc, char* argv[]){
 
@@ -40,7 +40,8 @@ int main(int argc, char* argv[]){
   Fill_q(q, n, h);
 
 
-  Thomas(d, a, b, q, u, n);
+  //Thomas(d, a, b, q, u, n);
+
 
   SpecialThomas(q, x, n);
 
@@ -50,19 +51,19 @@ int main(int argc, char* argv[]){
   for (int i = 0; i < n; i++){
     H[i] = h_least(u[i]);
     y = (double) (i+1)*h;
-    rel_e[i] = log10(abs((u[i] - exact(y))/exact(y)));
+    rel_e[i] = log10(abs((x[i] - exact(y))/exact(y)));
     //cout<<u[i]<< "    " << x[i]<<endl;
     }
 
 
-  myfile.open(outfilename);
+  //myfile.open(outfilename);
   myfile2.open(outfilename2);
 
   for (int i = 0; i<n; i++){
-    myfile << setprecision(9) << H[i] <<endl;
+    //myfile << setprecision(9) << H[i] <<endl;
     myfile2 << setprecision(9) << rel_e[i] <<endl;
   }
-  myfile.close();
+  //myfile.close();
   myfile2.close();
 
   delete[] H;

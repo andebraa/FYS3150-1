@@ -79,29 +79,23 @@ void Thomas(double* d, double* a, double* b, double* g, double* u, int N){
 }
 
 
-void SpecialThomas(double* g, double* u, int N){
-
-    double *G;
-
-    G = new double[N];
-    G[0] = g[0];
-
+void SpecialThomas(double* q, double* u, int N){
 
     // Forward substitution
 
     for (int i = 1; i<N; i++){
-      G[i] = g[i] + (G[i-1]*(i-1))/((double)i);
+      q[i] = q[i] + (q[i-1]*((double) i))/((double)(i+1));
     }
 
     // Backward sub.
 
-    u[N-1] = ((N-1)*g[N-1])/N;
+    u[N-1] = ((double) N * q[N-1])/((double) (N + 1));
+    //u[N-1] = (((double) (N))*q[N-1])/((double) (N+1));
 
     for (int i=N-2; i>=0; i--){
-      u[i] = ((double)(i+1)*(G[i]+u[i+1]))/((double)(i+2));
+      u[i] = (((double)(i+1))*(q[i]+u[i+1]))/((double)(i+2));
     }
 
-    delete[] G;
 
 }
 
