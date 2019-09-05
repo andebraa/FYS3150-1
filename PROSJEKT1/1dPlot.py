@@ -26,6 +26,8 @@ plt.legend()
 plt.savefig(figurename)
 plt.close()
 
+
+
 """
 plt.plot(np.log10(h_minste), rel_e)
 plt.xlabel("Stepsize")

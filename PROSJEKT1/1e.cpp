@@ -9,12 +9,14 @@
 
 using namespace std;
 using namespace arma;
+ofstream myfile,myfile2;
 
 int main(int argc, char* argv[]){
 
   int n = atoi(argv[1]);  //convert string to integer
-  char* outfilename;
+  char* outfilename,*outfilename2;
   outfilename = argv[2];
+  outfilename2 = argv[3];
   time_t start, finish;
 
   mat A = mat(n,n);
@@ -58,9 +60,24 @@ int main(int argc, char* argv[]){
   double time_used = (double) (finish - start)/ (CLOCKS_PER_SEC);
   cout << "Time used for n = "<< n << ": " << time_used << " s" << endl;
 
-  ofstream myfile;
+
+
   myfile.open(outfilename);
-  myfile << time_used <<endl;
+  for (int i = 0; i<n; i++){
+    myfile << setprecision(9) << x[i] <<endl;
+  }
   myfile.close();
+
+  myfile2.open(outfilename2);
+  myfile2 << time_used <<endl;
+  myfile2.close();
+
+
+
+
+
+
+
+
 
 }

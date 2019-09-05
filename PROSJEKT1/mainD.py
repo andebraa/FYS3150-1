@@ -18,7 +18,7 @@ for n in N:
     system("./1d.exe" + " " + str(n) + " " + filename + " " + filename2)
     #system("python" + " " + "1dPlot.py" + " " + filename + " " +filename2)
     #system("mv" + " " + figurename + " " +  "~/Documents/FA/5_semester/FYS3150/GitHub/FYS3150/PROSJEKT1/Plots") #Lagrer plottene i en egen mappe
-    #system("rm" + " " + filename) #Sletter txt-filene
+    #system("rm" + " " + filename + " " + filename2) #Sletter txt-filene
     print("Finished with n = " + str(n) )
 
 print("Done")

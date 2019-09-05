@@ -1,6 +1,16 @@
+from os import system
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.animation as animation
 import sys
+
+
+import matplotlib
+matplotlib.rc("xtick", labelsize=14)
+matplotlib.rc("ytick", labelsize=14)
+matplotlib.rcParams["mathtext.fontset"] = "stix"
+matplotlib.rcParams["font.family"] = "STIXGeneral"
+
 
 
 M = int(sys.argv[1])
@@ -14,11 +24,14 @@ for i in range(M):
     load = np.loadtxt(filename)
     rel_e[i] = max(load)
     h[i] = 1/(N[i]+1.0)
+    #system("rm" + " " + filename)
 
 print(rel_e)
 
 plt.plot(np.log10(h),rel_e)
-plt.xlabel("log(h)")
-plt.ylabel("$\epsilon_r$")
-plt.title("Relative error")
+plt.grid()
+plt.xlabel("log(h)",size =20)
+plt.ylabel("$\epsilon_r$", size=30)
+plt.title("Relative error", size=25)
+plt.savefig("Relativfeil.pdf")
 plt.show()
