@@ -26,7 +26,7 @@ for i in range(M):
     h[i] = 1/(N[i]+1.0)
     #system("rm" + " " + filename)
 
-print(rel_e)
+print("The maximimum value of relative error for each value of N:", rel_e)
 
 plt.plot(np.log10(h),rel_e)
 plt.grid()
