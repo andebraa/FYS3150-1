@@ -9,7 +9,6 @@
 
 using namespace std;
 using namespace arma;
-ofstream myfile,myfile2;
 
 int main(int argc, char* argv[]){
 
@@ -60,14 +59,16 @@ int main(int argc, char* argv[]){
   double time_used = (double) (finish - start)/ (CLOCKS_PER_SEC);
   cout << "Time used for n = "<< n << ": " << time_used << " s" << endl;
 
-  myfile.open(outfilename);
-  for (int i = 0; i<n; i++){
-    myfile << setprecision(9) << x[i] <<endl;
-  }
-  myfile.close();
-    
+  ofstream myfile2;
   myfile2.open(outfilename2);
-  myfile2 << time_used <<endl;
+  for (int i = 0; i<n; i++){
+    myfile2 << setprecision(9) << x(i) <<endl;
+  }
   myfile2.close();
-    
 
+  ofstream myfile;
+  myfile.open(outfilename);
+  myfile << time_used <<endl;
+  myfile.close();
+
+}

@@ -7,19 +7,21 @@
 
 using namespace std;
 
-ofstream myfile;
+ofstream myfile2;
 
 int main(int argc, char* argv[]){
 
   int n = atoi(argv[1]);  //convert string to integer
-  char* outfilename;
+  char* outfilename, *outfilename2;
   outfilename = argv[2];
+  outfilename2 = argv[3];
 
-  double *u, *q, *rel_e, h, small_h, *a, *b, *d, *x;
+  double *u, *q, *H, *rel_e, h, small_h, *a, *b, *d, *x;
 
 
   u = new double[n];
   q = new double[n];
+  H = new double[n];
   rel_e = new double[n];
 
   a = new double[n];
@@ -38,24 +40,33 @@ int main(int argc, char* argv[]){
   Fill_q(q, n, h);
 
 
+  //Thomas(d, a, b, q, u, n);
+
+
   SpecialThomas(q, x, n);
 
 
 
   double y;
   for (int i = 0; i < n; i++){
+    H[i] = h_least(u[i]);
     y = (double) (i+1)*h;
     rel_e[i] = log10(abs((x[i] - exact(y))/exact(y)));
+    //cout<<u[i]<< "    " << x[i]<<endl;
     }
 
 
-  myfile.open(outfilename);
+  //myfile.open(outfilename);
+  myfile2.open(outfilename2);
+
   for (int i = 0; i<n; i++){
-    myfile << setprecision(9) << rel_e[i] <<endl;
+    //myfile << setprecision(9) << H[i] <<endl;
+    myfile2 << setprecision(9) << rel_e[i] <<endl;
   }
   //myfile.close();
-  myfile.close();
+  myfile2.close();
 
+  delete[] H;
   delete[] q;
   delete[] rel_e;
   delete[] x;
