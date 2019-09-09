@@ -50,7 +50,6 @@ int main(int argc, char* argv[]){
   cout << "Time used for n = "<< n << ": " << time_used << " s" << endl;
 
 
-
   myfile.open(outfilename);
   for (int i = 0; i<n; i++){
     myfile << setprecision(9) << x[i] <<endl;

@@ -13,6 +13,7 @@ N = [int(10**i) for i in range(1,M+1)]
 #Takes one argument M in terminal
 #Runs the c++ file
 
+
 for n in N:
     filename = "rel_error-n" + str(n) + ".txt"
     system("./1d.exe" + " " + str(n) + " " + filename)

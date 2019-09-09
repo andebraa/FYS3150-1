@@ -21,7 +21,8 @@ M = int(sys.argv[1])
 N = [int(10**i) for i in range(1,M+1)]
 
 #Takes one argument M in terminal
-#Runs the c++ file 
+#Runs the c++ file
+
 
 for n in N:
     filename = "1e-n" + str(n) + ".txt"

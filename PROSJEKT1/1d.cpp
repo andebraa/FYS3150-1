@@ -41,7 +41,6 @@ int main(int argc, char* argv[]){
   SpecialThomas(q, x, n);
 
 
-
   double y;
   for (int i = 0; i < n; i++){
     y = (double) (i+1)*h;

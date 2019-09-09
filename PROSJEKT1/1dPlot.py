@@ -24,7 +24,6 @@ for i in range(M):
     rel_e[i] = max(load)
     h[i] = 1/(float(N[i])+1.0)
 
-
 print("The maximimum value of relative error for each value of N:", rel_e)
 
 

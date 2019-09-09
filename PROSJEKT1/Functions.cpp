@@ -54,8 +54,6 @@ void SpecialThomas(double* q, double* u, int N){
     for (int i=N-2; i>=0; i--){
       u[i] = (((double)(i+1))*(q[i]+u[i+1]))/((double)(i+2));
     }
-
-
 }
 
 

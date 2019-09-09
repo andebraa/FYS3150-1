@@ -27,7 +27,6 @@ x = [float((i+1)*h) for i in range(n)]
 x = np.array(x)
 
 
-
 plt.plot(x,v, label="numerical solution, n = " + str(n))
 plt.plot(x,u(x), label="analytical solution")
 plt.grid()

@@ -17,7 +17,7 @@ system("c++ -o 1b.exe 1b.cpp Functions.o")
 print("Finished compiling, executing....")
 
 #Runs the c++ file and plotting program
-#Takes one argument M in terminal 
+#Takes one argument M in terminal
 
 M = int(sys.argv[1])
 N = [10**i for i in range(1,M+1)]
@@ -33,7 +33,6 @@ print("Done")
 
 
 NN = [10**i for i in range(1,M+1)]
-
 #For-loop construct a .txt-file for CPU-times for different N
 
 main_filename = "Btimes.txt"
