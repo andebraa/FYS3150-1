@@ -1,4 +1,8 @@
 from os import system
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.animation as animation
+import seaborn as sns
 import sys
 import numpy as np
 import matplotlib.pyplot as plt
@@ -16,6 +20,7 @@ print("Compiling executable")
 system("c++ -O3 -c Functions.cpp")
 system("c++ -O3 -o 1e.exe 1e.cpp Functions.o -larmadillo")
 print("Finished compiling, executing....")
+
 
 M = int(sys.argv[1])
 N = [int(10**i) for i in range(1,M+1)]

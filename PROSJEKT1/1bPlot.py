@@ -13,7 +13,7 @@ matplotlib.rcParams["font.family"] = "STIXGeneral"
 
 #Reads the .txt-files generated in the c++ file 1b.cpp
 filename = str(sys.argv[1])
-figurename = filename.strip(".txt") + ".png"
+figurename = filename.strip(".txt") + ".pdf"
 v = np.loadtxt(filename)
 
 n = len(v)

@@ -65,7 +65,9 @@ int main(int argc, char* argv[]){
     myfile << setprecision(9) << x[i] <<endl;
   }
   myfile.close();
-    
+
   myfile2.open(outfilename2);
   myfile2 << time_used <<endl;
   myfile2.close();
+
+}
