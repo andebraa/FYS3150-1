@@ -10,6 +10,10 @@ print("Finished compiling, executing....")
 M = int(sys.argv[1])
 N = [10**i for i in range(1,M+1)]
 
+#Takes one argument M in terminal
+#Runs c++ file and writing the CPU times to a .txt-file
+
+
 main_filename = "Ctimes.txt"
 with open(main_filename, "w") as outfile:
 
@@ -23,5 +27,3 @@ with open(main_filename, "w") as outfile:
             outfile.write(str(n) + " " + timeused)
         system("rm" + " " + "time" + str(n) + ".txt") #Sletter txt-filene
 print("Done")
-
-#KJØRER I TERMINAL: python3 mainC.py M

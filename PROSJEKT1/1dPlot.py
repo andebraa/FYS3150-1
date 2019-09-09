@@ -2,36 +2,36 @@ import numpy as np
 import matplotlib.pyplot as plt
 import sys
 
-filename = str(sys.argv[1])
-filename2 = str(sys.argv[2])
-figurename = filename.strip(".txt") + ".png"
-figurename2 = filename2.strip(".txt") + ".png"
-h_minste = np.loadtxt(filename)
+#Settings for plots
+import matplotlib
+matplotlib.rc("xtick", labelsize=14)
+matplotlib.rc("ytick", labelsize=14)
+matplotlib.rcParams["mathtext.fontset"] = "stix"
+matplotlib.rcParams["font.family"] = "STIXGeneral"
 
-rel_e = np.loadtxt(filename2)
+M = int(sys.argv[1])
+N = [int(10**i) for i in range(1,M+1)]
 
-n = len(h_minste)
+#Takes one argument M in terminal
+#Reads the .txt-files generated in the c++ file 1d.cpp
 
-def u(x):
-    return 1 - (1-np.exp(-10))*x - np.exp(-10*x)
+rel_e = np.zeros(M)
+h = np.zeros(M)
 
-x = np.linspace(0,1,n+1)
+for i in range(M):
+    filename = "rel_error-n" + str(N[i]) + ".txt"
+    load = np.loadtxt(filename)
+    rel_e[i] = max(load)
+    h[i] = 1/(float(N[i])+1.0)
+
+print("The maximimum value of relative error for each value of N:", rel_e)
 
 
-
-plt.plot(x[0:-1],h_minste, label="Minste steglegnde")
-plt.xlabel("x")
-plt.ylabel("h")
+plt.plot(np.log10(h),rel_e)
+plt.xlabel("log(h)", size = 15)
+plt.axvline(x = -5.59, color = "k", ls = "--", label="log(h) = -5.59")
+plt.ylabel("$\epsilon_r$", size = 20)
+plt.title("Relative error", size = 15)
 plt.legend()
-plt.savefig(figurename)
-plt.close()
-
-
-
-"""
-plt.plot(np.log10(h_minste), rel_e)
-plt.xlabel("Stepsize")
-plt.ylabel("Relative error")
-plt.savefig(figurename2)
-plt.close()
-"""
+plt.grid()
+plt.show()
