@@ -1,2 +1,0 @@
-n timeused
-10 4e-06
