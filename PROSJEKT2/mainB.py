@@ -4,9 +4,10 @@ import numpy as np
 
 print("Compiling executable")
 
-#system("c++ -c Functions.cpp")
+system("c++ -c Functions.cpp")
 system("c++ -O3 -c 2b.cpp")
-system("c++ -O3 -o 2b.exe 2b.o -larmadillo")
+system("c++ -O3 -o 2b.exe 2b.o Functions.o -larmadillo")
+
 #system("c++ -o 2b.exe 2b.cpp -larmadillo") #Functions.o")
 print("Finished compiling, executing....")
 

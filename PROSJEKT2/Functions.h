@@ -1,4 +1,6 @@
 #include <armadillo>
 using namespace arma;
 
-void rotation(double**, double**, int, int, int);
+double max_offdiag(mat, int&, int&);
+
+mat rotation(mat, int, int, int);
