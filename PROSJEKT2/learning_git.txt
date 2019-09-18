@@ -1,1 +1,10 @@
-This is a file such that Kaspara can do git from console.
+This is a file such that Kaspara can do git from console
+
+git branch
+git status
+git add --all
+git status
+git commit -m "meldingen du vil vise"
+git push origin branchendin
+
+.
