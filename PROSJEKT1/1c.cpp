@@ -38,5 +38,4 @@ int main(int argc, char* argv[]){
   myfile.open(outfilename);
   myfile << time_used <<endl;
   myfile.close();
-
   }

@@ -3,9 +3,6 @@ import sys
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
-import seaborn as sns
-plt.style.use("bmh")
-sns.color_palette("hls",1)
 
 import matplotlib
 matplotlib.rc("xtick", labelsize=14)
@@ -19,6 +16,8 @@ system("c++ -c Functions.cpp")
 system("c++ -o 1b.exe 1b.cpp Functions.o")
 print("Finished compiling, executing....")
 
+#Runs the c++ file and plotting program
+#Takes one argument M in terminal
 
 M = int(sys.argv[1])
 N = [10**i for i in range(1,M+1)]
@@ -27,13 +26,14 @@ for n in N:
     filename2 = "time" + str(n) + ".txt"
     figurename = filename.strip(".txt") + ".pdf"
     system("./1b.exe" + " " + str(n) + " " + filename + " " + filename2)
-    system("python" + " " + "1bPlot.py" + " " + filename) #Kjører plotprogrammet
-    system("mv" + " " + figurename + " " + "~/Documents/5.semester/COMPFYS/FYS3150/FYS3150/PROSJEKT1/Plots") #Lagrer plottene i en egen mappe
+    system("python" + " " + "1bPlot.py" + " " + filename) #Initate plot-program
+    system("mv" + " " + figurename + " " + "~/Documents/FA/5_semester/FYS3150/GitHub/FYS3150/PROSJEKT1/Plots") #Lagrer plottene i en egen mappe
     system("rm" + " " + filename) #Sletter txt-filene
 print("Done")
 
 
 NN = [10**i for i in range(1,M+1)]
+#For-loop construct a .txt-file for CPU-times for different N
 
 main_filename = "Btimes.txt"
 with open(main_filename, "w") as outfile:
@@ -45,4 +45,4 @@ with open(main_filename, "w") as outfile:
         with open(filename2, "r") as infile:
             timeused = str(infile.readline())
             outfile.write(str(n) + " " + timeused)
-        system("rm" + " " + "time" + str(n) + ".txt") #Sletter txt-filene
+        system("rm" + " " + "time" + str(n) + ".txt") #Delete .txt-files

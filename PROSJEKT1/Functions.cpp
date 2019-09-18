@@ -4,49 +4,9 @@
 
 using namespace std;
 
-void ThomasLU(double* a, double* b, double* c, double *x, double *q, int N){
-
-  double *l, *d, *u, *y;
-
-  // LU decomp.
-  l = new double[N];
-  d = new double[N];
-  u = new double[N];
-  y = new double[N];
-
-  d[0] = a[0];
-  u[0] = c[0];
-
-
-  for (int i = 1; i<N; i++){
-    l[i] = b[i]/d[i-1];
-    d[i] = a[i] - l[i]*u[i-1];
-    u[i] = c[i];
-  }
-
-  // Forward substitution
-
-  y[0] = q[0];
-
-  for (int i = 1; i<N; i++){
-    y[i] = q[i]-l[i]*y[i-1];
-  }
-
-  // Backward sub.
-
-  x[N-1] = y[N-1]/d[N-1];
-  for (int i=N-2; i>0; i--){
-    x[i] = (y[i]-u[i]*x[i+1])/d[i];
-  }
-
-  delete[] l;
-  delete[] d;
-  delete[] u;
-  delete[] y;
-
-}
 
 void Thomas(double* d, double* a, double* b, double* g, double* u, int N){
+//General Thomas algorithm for solving linear system
 
     double *D, *G;
 
@@ -71,8 +31,6 @@ void Thomas(double* d, double* a, double* b, double* g, double* u, int N){
       u[i] = (G[i]-a[i]*u[i+1])/D[i];
     }
 
-    //SPØR OM HJELP MED INDEKSERING!!!!
-
     delete[] D;
     delete[] G;
 
@@ -80,6 +38,7 @@ void Thomas(double* d, double* a, double* b, double* g, double* u, int N){
 
 
 void SpecialThomas(double* q, double* u, int N){
+//Special Thomas algorithm for solving our specific problem with Töplitz matrix
 
     // Forward substitution
 
@@ -95,12 +54,11 @@ void SpecialThomas(double* q, double* u, int N){
     for (int i=N-2; i>=0; i--){
       u[i] = (((double)(i+1))*(q[i]+u[i+1]))/((double)(i+2));
     }
-
-
 }
 
 
 void Fill_q(double*q, int N, double h){
+//Function construct the source term f(x) = 100epx(-10x) for all timesteps
   double hh, x;
   hh = h*h;
   for (int i=0; i<N; i++){
@@ -111,16 +69,12 @@ void Fill_q(double*q, int N, double h){
 
 
 double f(double x){
+//Source term function f(x) = 100epx(-10x)
   return 100*exp(-10*x);
 }
 
-double h_least(double x){
-  double hh;
-
-  hh = 24e-15/(10000*exp(-10*x));
-  return pow(hh,0.25);
-}
 
 double exact(double x){
+//The closed form solution
     return 1 - (1-exp(-10))*x - exp(-10*x);
   }

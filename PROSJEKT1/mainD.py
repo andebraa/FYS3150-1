@@ -10,15 +10,13 @@ print("Finished compiling, executing....")
 M = int(sys.argv[1])
 N = [int(10**i) for i in range(1,M+1)]
 
+#Takes one argument M in terminal
+#Runs the c++ file
+
 
 for n in N:
-    filename = "Least_H-n" + str(n) + ".txt"
-    filename2 = "rel_error-n" + str(n) + ".txt"
-    figurename = filename.strip(".txt") + ".png"
-    system("./1d.exe" + " " + str(n) + " " + filename + " " + filename2)
-    #system("python" + " " + "1dPlot.py" + " " + filename + " " +filename2)
-    #system("mv" + " " + figurename + " " +  "~/Documents/FA/5_semester/FYS3150/GitHub/FYS3150/PROSJEKT1/Plots") #Lagrer plottene i en egen mappe
-    #system("rm" + " " + filename + " " + filename2) #Sletter txt-filene
-    print("Finished with n = " + str(n) )
+    filename = "rel_error-n" + str(n) + ".txt"
+    system("./1d.exe" + " " + str(n) + " " + filename)
+    print("Finished with n = " + str(n))
 
 print("Done")

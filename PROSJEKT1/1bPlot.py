@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import sys
 import matplotlib.animation as animation
 
+#Settings for plots
 import matplotlib
 matplotlib.rc("xtick", labelsize=14)
 matplotlib.rc("ytick", labelsize=14)
@@ -10,6 +11,7 @@ matplotlib.rcParams["mathtext.fontset"] = "stix"
 matplotlib.rcParams["font.family"] = "STIXGeneral"
 
 
+#Reads the .txt-files generated in the c++ file 1b.cpp
 filename = str(sys.argv[1])
 figurename = filename.strip(".txt") + ".pdf"
 v = np.loadtxt(filename)
@@ -17,12 +19,13 @@ v = np.loadtxt(filename)
 n = len(v)
 h = 1/(float(n)+1)
 
+
 def u(x):
     return 1 - (1-np.exp(-10))*x - np.exp(-10*x)
 
-#x = np.linspace(0,1,n+1)
-x =[float((i+1)*h) for i in range(n)]
+x = [float((i+1)*h) for i in range(n)]
 x = np.array(x)
+
 
 plt.plot(x,v, label="numerical solution, n = " + str(n))
 plt.plot(x,u(x), label="analytical solution")

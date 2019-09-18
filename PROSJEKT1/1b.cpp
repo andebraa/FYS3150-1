@@ -35,6 +35,7 @@ int main(int argc, char* argv[]){
 
   h = 1/((double) n + 1.0);
 
+
   Fill_q(q, n, h);
 
 
@@ -47,7 +48,6 @@ int main(int argc, char* argv[]){
 
   double time_used = (double) (finish - start)/ (CLOCKS_PER_SEC);
   cout << "Time used for n = "<< n << ": " << time_used << " s" << endl;
-
 
 
   myfile.open(outfilename);

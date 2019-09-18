@@ -4,9 +4,11 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 import seaborn as sns
 import sys
-plt.style.use("bmh")
-sns.color_palette("hls",1)
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.animation as animation
 
+#Settings for plots
 import matplotlib
 matplotlib.rc("xtick", labelsize=14)
 matplotlib.rc("ytick", labelsize=14)
@@ -22,6 +24,11 @@ print("Finished compiling, executing....")
 
 M = int(sys.argv[1])
 N = [int(10**i) for i in range(1,M+1)]
+
+#Takes one argument M in terminal
+#Runs the c++ file
+
+
 for n in N:
     filename = "1e-n" + str(n) + ".txt"
     filename2 = "LUtime-" + str(n) + ".txt"
@@ -32,6 +39,7 @@ for n in N:
     system("rm" + " " + filename) #Sletter txt-filene
     print("Finished with n = " + str(n) )
 
+#For-loop construct a .txt-file for CPU-times for different N
 
 main_filename = "LUtimes.txt"
 with open(main_filename, "w") as outfile:
