@@ -5,7 +5,9 @@ import numpy as np
 print("Compiling executable")
 
 #system("c++ -c Functions.cpp")
-system("c++ -o 2b.exe 2b.cpp") #Functions.o")
+system("c++ -O3 -c 2b.cpp")
+system("c++ -O3 -o 2b.exe 2b.o -larmadillo")
+#system("c++ -o 2b.exe 2b.cpp -larmadillo") #Functions.o")
 print("Finished compiling, executing....")
 
 #Runs the c++ file and plotting program

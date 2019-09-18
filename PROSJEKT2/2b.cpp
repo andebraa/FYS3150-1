@@ -9,15 +9,16 @@ using namespace arma;
 //Definere funk
 double max_offdiag(mat, int&, int&);
 
-void rotation(mat, mat, int, int, int);
+mat rotation(mat, int, int, int);
 
+
+//MAIN SHIT HAPPENING HERE!!
 int main(int argc, char* argv[]){
   int n = atoi(argv[1]);
 
   mat A = mat(n,n);
   double h = 1/((double) n);
   double hh = h*h;
-  mat R(n,n,fill::eye);
 
   A.fill(0.0);
   for (int i=0; i< n-1; i++){
@@ -31,23 +32,31 @@ int main(int argc, char* argv[]){
   double max_value;
 
   max_value = max_offdiag(A, k, l);
+  mat C = mat(n,n);
+
 
   double eps = 1e-8;
   int max_iterat = 1e6;
   int iterat = 0;
 
-  while (max_value > eps && iterat < max_iterat){
-    max_value = max_offdiag(A, k, l);
-    rotation(A, R, k, l, n);
+  mat S;
 
+  while (max_value*max_value > eps && iterat < max_iterat){
+    max_value = max_offdiag(A, k, l);
+    S = rotation(A, k, l, n);
+    A = trans(S)*A*S;
     iterat = 1 + iterat;
   }
 
-  A.print("A = ");
+
+
+  vec computed_eigval = vec(n);
+  computed_eigval = A.diag();
+  computed_eigval = sort(computed_eigval, "ascend");
+  computed_eigval.print("Computed eigenvalues = ");
   return 0;
 
 }
-
 
 //Fylle funksjonene
 double max_offdiag(mat A, int &k, int &l){
@@ -76,19 +85,21 @@ double max_offdiag(mat A, int &k, int &l){
 }
 
 
-void rotation(mat A,mat R, int k, int l, int n){
+mat rotation(mat A, int k, int l, int n){
   //Her er indekseringen basert på at jeg lager en matrise med for-loop
 
+  mat S = mat(n,n);
+  S.eye();
   double t, tau, s, c;
 
   //Bestemmer sin og cos
   if (A(k,l) != 0){
-  tau = (A(l,l) - A(k,k))/(2*A(k,l));
-  if (tau > 0){
-    t = 1.0/(tau + sqrt(1 + tau*tau));
+  tau = (A(l,l) - A(k,k))/(2.0*A(k,l));
+  if (tau >= 0){
+    t = tau + sqrt(1.0 + tau*tau);
   }
   else{
-    t = -1.0/(tau - sqrt(1 + tau*tau));
+    t = - (tau + sqrt(1.0 + tau*tau));
   }
   c = 1.0/sqrt(1+t*t);
   s = t*c;
@@ -98,6 +109,15 @@ void rotation(mat A,mat R, int k, int l, int n){
     s = 0;
   }
 
+  S(k,k) = c;
+  S(l,l) = c;
+  S(k,l) = -s;
+  S(l,k) = s;
+
+  return S;
+}
+
+/*
     double a_kk, a_ll, a_ik, a_il, r_ik, r_il;
     //Endrer verdien til den største ikke-diag element
     a_kk = A(k,k);
@@ -123,4 +143,6 @@ void rotation(mat A,mat R, int k, int l, int n){
       R(i,l) = c*r_il + s*r_ik;
     }
 
+  return A;
 }
+*/
