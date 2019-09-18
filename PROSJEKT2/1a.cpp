@@ -27,13 +27,18 @@ int main(int argc,char* argv[]){
   A(n-1,n-1) = 2/hh;
   //A(n-1,n-2) = -20;
 
+  vec InitialEigenval;
+  mat InitialEigenvec;
+  eig_sym(InitialEigenval, InitialEigenvec, A);
 
   int k;
   int l;
 
   double max_value;
 
+  A = Jacobi(A,n, max_value, InitialEigenval);
 
+  /*
   A = Jacobi(A,n, max_value);
 
 
@@ -41,5 +46,5 @@ int main(int argc,char* argv[]){
   com_eigen = A.diag();
   com_eigen = sort(com_eigen,"ascend");
   com_eigen.print("Computed eigenvalues:");
-
+  */
 }

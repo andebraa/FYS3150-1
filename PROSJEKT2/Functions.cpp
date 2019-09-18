@@ -43,7 +43,7 @@ mat Rotate(mat A, int &k, int &l, int n){
 }
 
 
-mat Jacobi(mat A, int n, double &max_value){
+mat Jacobi(mat A, int n, double &max_value, vec InitialEigenval){
 
   mat R = mat(n,n);
   R.fill(0.0);
@@ -62,20 +62,22 @@ mat Jacobi(mat A, int n, double &max_value){
   int it = 0;
 
   mat S;
-
   max_value = maxoffdiag(A,k,l,max_value);
 
   while (max_value*max_value > epsilon && (double) it < max_it){
     max_value = maxoffdiag(A,k,l,max_value);
     S = Rotate(A, k, l, n);
     A = trans(S)*A*S;
+    if (TestEigen(A, InitialEigenval) != true){
+      cout<<"The eigenvalues are not preserved :("<<endl;
+      break;
+    }
     it++;
   }
 
-
+  cout<<"The eigenvalues are preserved :D"<<endl;
   cout << "Number of iterations" <<" "<< it << endl;
 
-  A.print();
   return A;
 
 }
@@ -111,6 +113,29 @@ double maxoffdiag(mat A, int &k, int &l, double &max_value){
   //cout<<*l<<endl;
 
 }
+
+bool TestEigen(mat A, vec InitialEigenval){
+
+  double eps;
+  eps = 1e-08;
+  int L;
+  L = InitialEigenval.size();
+
+  vec eigval;
+  mat eigvec;
+
+  eig_sym(eigval, eigvec, A);
+
+  for (int i = 0; i < L; i++){
+    if (fabs(eigval(i)-InitialEigenval(i)) >= eps ){
+      return false;
+    }
+
+  }
+  return true;
+
+}
+
 
 
 //Sjekke ortogonaliteten til egenvektorer i den nye matrisen (skal også være symmetrisk)
