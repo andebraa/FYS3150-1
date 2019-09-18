@@ -66,3 +66,22 @@ mat rotation(mat A, int k, int l, int n){
 
   return S;
 }
+
+
+bool EigenvalueTest(mat A, vec initial_eigenvalues){
+
+  int L = initial_eigenvalues.size();
+  double eps = 1e-8;
+
+  vec eigval;
+  mat eigvec;
+
+  eig_sym(eigval, eigvec, A);
+
+  for (int i = 0; i < L; i++){
+    if (fabs(eigval(i) - initial_eigenvalues(i)) >= eps){
+      return false;
+    }
+  }
+  return true;
+}

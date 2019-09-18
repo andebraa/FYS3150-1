@@ -10,6 +10,7 @@ using namespace arma;
 int main(int argc, char* argv[]){
   int n = atoi(argv[1]);
 
+//Filling matrix A
   mat A = mat(n,n);
   double h = 1/((double) n);
   double hh = h*h;
@@ -22,31 +23,38 @@ int main(int argc, char* argv[]){
   }
   A(n-1,n-1) = 2/hh;
 
+//Finding maximum off-diagonal element and its indicies
   int k, l;
   double max_value;
 
   max_value = max_offdiag(A, k, l);
 
-
   double eps = 1e-8;
   int max_iterat = 1e6;
   int iterat = 0;
+  mat S, initial_eigenvec;
+  vec computed_eigval, initial_eigenvalues;
 
-  mat S;
+  computed_eigval = vec(n);
+  initial_eigenvalues = vec(n);
+
+  eig_sym(initial_eigenvalues, initial_eigenvec, A);
+
 
   while (max_value*max_value > eps && iterat < max_iterat){
     max_value = max_offdiag(A, k, l);
     S = rotation(A, k, l, n);
     A = trans(S)*A*S;
+
+    if (EigenvalueTest(A, initial_eigenvalues) != true){
+      cout<<"Eigenvalues not preserved"<<endl;
+      break;
+    }
     iterat = 1 + iterat;
   }
 
+  cout<<"Everything okay yo!!!"<<endl;
   cout<<"Number of iterations"<<" "<<iterat<<endl;
-
-  vec computed_eigval = vec(n);
-  computed_eigval = A.diag();
-  computed_eigval = sort(computed_eigval, "ascend");
-  computed_eigval.print("Computed eigenvalues:");
   return 0;
 
 }
